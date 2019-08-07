@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>HTML List - HAI 내손안에 금융비서</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" >
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Referrer" content="origin">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css">
+<!--
+.listWrap {width:500px; font-size:16px;}
+ul {border:2px solid #ddd; overflow:hidden; padding:0;}
+ul > li {padding:5px; color:#000; list-style:none;}
+ul > li:after{top:2px !important;}
+ol {margin-bottom:40px; overflow:hidden;}
+ol > li {margin-bottom:10px; padding:5px; color:#000;}
+ol > li > a {color:#000;}
+.end {background:#fff; color:#000;}
+.end > a { color:#000;}
+.ing {background:#ffff00; position:relative;}
+.ing:after {content:'작업중(하이차트 커스텀)'; padding:5px; border-radius:10px; border:1px solid #ddd; background:#fff; color:#e22633; position:absolute; top:5px; right:5px; font-size:11px;}
+.del {background:#fff; color:#ddd;}
+.del > a {color:#ddd;}
+.moding {background:#d5f5ff; position:relative;}
+.moding:after {content:'디자인수정예정'; padding:5px; border-radius:10px; border:1px solid #ddd; background:#fff; color:#181e9b; position:absolute; top:5px; right:5px; font-size:11px;}
+.modi {background:#66ccff; position:relative;}
+.modi > p,
+.modiOld > p {padding:0 0 0 10px; font-size:14px; color:#000;}
+.modi > p > b,
+.modiOld > p > b {color:#ffff00;}
+.modi:after {content:'5/17 작업완료'; padding:5px; border-radius:10px; border:1px solid #ddd; background:#fff; color:#e22633; position:absolute; top:5px; right:5px; font-size:11px;}
+.modiOld {background:#66ccff; position:relative;}
+//-->
+</style>
+</head>
+<body>
+	
+	<h1>HTML List</h1>
+	<div class="listWrap">
+		<ul class="">
+			<li>완료</li>
+			<li class="ing">작업</li>
+			<li class="del">삭제</li>
+			<li class="moding">수정예정 : 부행장님보고 후 UI 수정 건</li>
+			<li class="modi">수정완료 : 그래프 <a target="_blank" title="새창으로 열기" href="answerType05.html">answerType05.html</a>
+				<p>* 작업내용 <b>'2018-05-17'</b> 주석으로 표시<br>하이차트 커스텀<br></p>
+				<p>- 해당 html(answerType05.html), css(chatbot.css) 수정<br>- code 폴더 추가(하이차트 관련js)</p>
+			</li>
+			<li class="modi">수정완료 : 지도 <a target="_blank" title="새창으로 열기" href="map.html">map.html</a>
+				<p>* 작업내용 <b>'2018-05-17'</b> 주석으로 표시<br>영문 주소명 삭제<br></p>
+			</li>
+			<li class="modiOld">수정완료 : 지도 <a target="_blank" title="새창으로 열기" href="map.html">map.html</a>
+				<p>* 작업내용 <b>'2018-05-15'</b> 주석으로 표시<br>지점안내 레이어팝업내 버튼 추가<br></p>
+			</li>
+			<li class="modiOld">수정완료 : 본인인증 <a target="_blank" title="새창으로 열기" href="certification.html">certification.html</a>
+				<p>* 작업내용 <b>'2018-05-10'</b> 주석으로 표시<br>1. HAI 이용약관동의 문구수정 <br>2. 인증시간 삭제 <br></p>
+				<p>* 작업내용 <b>'2018-05-08'</b> 주석으로 표시<br>1. HAI 이용약관동의 추가 <br>2. PUSH 수신여부 삭제 <br></p>
+			</li>
+		</ul>
+		<h2>기본</h2>
+		<ol class="">
+			<li class="moding">기본<br><a target="_blank" title="새창으로 열기" href="chatbot.html">chatbot.html</a></li>
+		</ol>
+		<h2>답변 타입별</h2>
+		<ol class="">
+			<li>텍스트<br><a target="_blank" title="새창으로 열기" href="answerType01.html">answerType01.html</a></li>
+			<li class="moding">버튼<br><a target="_blank" title="새창으로 열기" href="answerType02.html">answerType02.html</a></li>
+			<li>이미지<br><a target="_blank" title="새창으로 열기" href="answerType03.html">answerType03.html</a></li>
+			<li class="moding">테이블(기본)<br><a target="_blank" title="새창으로 열기" href="answerType04.html">answerType04.html</a></li>
+			<li>테이블(거래내역)<br><a target="_blank" title="새창으로 열기" href="answerType04_02.html">answerType04_02.html</a></li>
+			<li class="ing">그래프<br><a target="_blank" title="새창으로 열기" href="answerType05.html">answerType05.html</a></li>
+			<li class="del">지도(노출방법으로 인한 삭제예정)<br><a href="#">answerType06.html</a></li>
+			<li>카드<br><a target="_blank" title="새창으로 열기" href="answerType07.html">answerType07.html</a></li>
+			<li class="">선톡<br><a target="_blank" title="새창으로 열기" href="firstMessage.html">firstMessage.html</a></li>
+			<li class="">오픈멘트<br><a target="_blank" title="새창으로 열기" href="openMessage.html">openMessage.html</a></li>
+		</ol>
+		<h2>답변 히스토리별</h2>
+		<ol class="">
+			<li>잔액조회<br><a target="_blank" title="새창으로 열기" href="answerStyle01.html">answerStyle01.html</a></li>
+			<li>과거잔액비교<br><a target="_blank" title="새창으로 열기" href="answerStyle02.html">answerStyle02.html</a></li>
+			<li>거래내역조회<br><a target="_blank" title="새창으로 열기" href="answerStyle03.html">answerStyle03.html</a></li>
+			<li>전체계좌조회<br><a target="_blank" title="새창으로 열기" href="answerStyle04.html">answerStyle04.html</a></li>
+			<li>자산현황<br><a target="_blank" title="새창으로 열기" href="answerStyle05.html">answerStyle05.html</a></li>
+			<li>별칭이체<br><a target="_blank" title="새창으로 열기" href="answerStyle06.html">answerStyle06.html</a></li>
+			<li>적금가입<br><a target="_blank" title="새창으로 열기" href="answerStyle07.html">answerStyle07.html</a></li>
+		</ol>
+		<h2>팝업</h2>
+		<ol class="">
+			<li class="modiOld">본인인증<br><a target="_blank" title="새창으로 열기" href="certification.html">certification.html</a></li>
+			<li>서비스만족도평가<br><a target="_blank" title="새창으로 열기" href="satisfaction.html">satisfaction.html</a></li>
+			<li>음성인식(마이크버튼 클릭시 확인가능)<br><a target="_blank" title="새창으로 열기" href="voice.html">voice.html</a></li>
+			<li>사용자 확인 팝업(로딩팝업)<br><a target="_blank" title="새창으로 열기" href="loadingPopup.html">loadingPopup.html</a></li>
+			<li class="modi">지도<br><a target="_blank" title="새창으로 열기" href="map.html">map.html</a></li>
+		</ol>
+		
+	</div>
+	
+</body>
+</html>
+
