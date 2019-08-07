@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>서비스만족도평가 - HAI 내손안에 금융비서</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" >
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Referrer" content="origin">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" href="css/chatbot.css" type="text/css">
+	<script src="js/jquery.min.1.11.0.js"></script>
+	<script src="js/chatbot.js"></script>
+</head>
+<body>
+	<div class="satisWrap">
+		<!-- header [S] -->
+		<header>
+			<h1>서비스 만족도 평가</h1>
+			<a href="#" class="cerClose">닫기</a>
+		</header>
+		<!-- header [E] -->
+		
+		<!-- 서비스 만족도 평가 내용 [S] -->
+		<section class="content">
+			<form method="post">
+				<div class="checkArea">
+					<ul class="ckList">
+						<li><input type="radio" id="chkSatis1" class="chkSatis" name="chkSatis"><label for="chkSatis1">매우 만족한다.</label></li>
+						<li><input type="radio" id="chkSatis2" class="chkSatis" name="chkSatis"><label for="chkSatis2">대체로 만족한다.</label></li>
+						<li><input type="radio" id="chkSatis3" class="chkSatis" name="chkSatis"><label for="chkSatis3">그저 그렇다.</label></li>
+						<li><input type="radio" id="chkSatis4" class="chkSatis" name="chkSatis"><label for="chkSatis4">불편하다.</label></li>
+						<li><input type="radio" id="chkSatis5" class="chkSatis" name="chkSatis"><label for="chkSatis5">기타</label>
+							<div class="satisTxtBox">
+								<textarea title="기타입력폼"></textarea>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</form>
+		</section>
+		<!-- 서비스 만족도 평가 내용 [E] -->
+		<div class="certBtn">
+			<a href="#" class="on">평가완료</a><!-- on(활성화 class) -->
+		</div>
+
+	</div>
+	
+</body>
+</html>
+

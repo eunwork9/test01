@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지도 - HAI 내손안에 금융비서</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" >
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Referrer" content="origin">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" href="css/chatbot.css" type="text/css">
+	<script src="js/jquery.min.1.11.0.js"></script>
+	<script src="js/chatbot.js"></script>
+</head>
+<body>
+	<div class="mapArea">
+		<a href="#" class="lyClose">닫기</a>
+		<div class="bigMap">
+			<div class="map">
+				지도영역
+				<a href="#hanaInfo1" class="mapGps"><!-- mapGps : 아이콘 style관련 class명 / 클릭시 href안 일치하는 id값이 있는 레이어가 띄워짐 -->
+					<img src="images/icon_map_gps.png" alt="지점위치표시"/><!-- img size : 24 * 31.5 (px) -->
+				</a>
+				<a href="#hanaInfo2" class="mapGps"><!-- mapGps : 아이콘 style관련 class명 / 클릭시 href안 일치하는 id값이 있는 레이어가 띄워짐 -->
+					<img src="images/icon_map_gps.png" alt="지점위치표시"/><!-- img size : 24 * 31.5 (px) -->
+				</a>
+			</div>
+			<!-- 위치정보 레이어 영역 [S] -->
+			<div class="mapPopup " id="hanaInfo1">
+				<div class="layerCont mapInfo">
+					<a href="#" class="mInfoClose">닫기</a>
+					<p class="mapTit">소공동 PB</p>
+					<p class="mapTxt">서울특별시 중구 남대문로7길 16(소공동21)<!-- 2018-05-17 삭제 : <br>16, NAMDAEMUN-RO 7-GIL JUNG-GU, SEOUL --></p>
+					<div class="tableArea tbStyle04">
+						<table>
+							<caption>지점에 대한 오시는길, 전화, 팩스, 영업시간, 기타 정보를 제공합니다.</caption>
+							<tbody>
+								<tr>
+									<th scope="row">오시는길</th>
+									<td>조선호텔 입구 한국문학사빌딩 1,2층</td>
+								</tr>
+								<tr>
+									<th scope="row">전화</th>
+									<td><a href="tel:02-737-1111">02-754-6050</a></td>
+								</tr>
+								<tr>
+									<th scope="row">팩스</th>
+									<td><a href="tel:02-767-6692">02-752-4932</a></td>
+								</tr>
+								<tr>
+									<th scope="row">영업시간</th>
+									<td>08:00~22:00</td>
+								</tr>
+								<tr>
+									<th scope="row">기타</th>
+									<td>PB업무</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<a href="#" class="mapBtn">지점선택</a><!-- 2018-05-15 버튼추가 -->
+				</div>
+			</div>
+			<!-- 위치정보 레이어 영역 [E] -->
+
+			<!-- 위치정보 레이어 영역 [S] -->
+			<div class="mapPopup " id="hanaInfo2">
+				<div class="layerCont mapInfo">
+					<a href="#" class="mInfoClose">닫기</a>
+					<p class="mapTit">영업1분PB센터</p>
+					<p class="mapTxt">서울특별시 중구 을지로 35(을지로1가 101-1) <!-- 2018-05-17 삭제 : 55, Eulji-ro, jung-gu, Seoul --></p>
+					<div class="tableArea tbStyle04">
+						<table>
+							<caption>지점에 대한 오시는길, 전화, 팩스, 영업시간, 기타 정보를 제공합니다.</caption>
+							<tbody>
+								<tr>
+									<th scope="row">오시는길</th>
+									<td>을지로입구역 1번출구</td>
+								</tr>
+								<tr>
+									<th scope="row">전화</th>
+									<td><a href="tel:02-737-1111">02-737-1111</a></td>
+								</tr>
+								<tr>
+									<th scope="row">팩스</th>
+									<td><a href="tel:02-767-6692">02-767-6692</a></td>
+								</tr>
+								<tr>
+									<th scope="row">영업시간</th>
+									<td>09:00~16:00</td>
+								</tr>
+								<tr>
+									<th scope="row">기타</th>
+									<td>PB업무, 해외이주 유학클럽서비스</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<a href="#" class="mapBtn">지점선택</a><!-- 2018-05-15 버튼추가 -->
+				</div>
+			</div>
+			<!-- 위치정보 레이어 영역 [E] -->
+		</div>
+	</div>
+
+	<script language="javascript" type="text/javascript">
+	//<![CDATA[
+	$('.mapGps').each(function(){
+		$(this).on('click', function(){
+			var mapGpsID = $(this).attr('href'),
+				mapInfo = $(mapGpsID);
+			mapInfo.fadeIn().siblings('.mapPopup').hide();
+		});
+		$('.mInfoClose').each(function(){
+			$(this).on('click', function(){
+				$('.mapPopup').hide();
+			});
+		});
+	});
+	//]]>
+	</script>
+
+	
+</body>
+</html>
+

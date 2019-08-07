@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>05. 그래프 타입</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Referrer" content="origin">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<script src="js/jquery.min.1.11.0.js"></script>
+	<script src="code/highcharts.js"></script>
+	<script src="code/modules/exporting.js"></script>
+	<script src="code/modules/export-data.js"></script>
+	<link rel="stylesheet" href="css/chatbot.css" type="text/css">
+</head>
+<body>
+	<div class="chatbotWrap">
+		<!-- header [S] -->
+		<header>
+			<a href="#" class="infoBtn">안내</a>
+			<h1><img src="images/logo.png" alt="HAI 내손안에 금융비서"/></h1>
+			<a href="#" class="close">닫기</a>
+		</header>
+		<!-- header [E] -->
+		
+		<!-- 메세지창 [S] -->
+		<section class="messageArea">
+			<ul class="talk">
+				<li class="me">
+					<div>“환전해줘”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>HAI뱅킹에서 환전을 위해 등록하신 을지로 지점에서 수령하시겠습니까?</p>
+						<span class="time">13:39</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“을지로지점에서 환전하고 싶은데... 가능해?”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>을지로지점에서 환전신청을 도와드겠습니다. <br/>환전하시려는 통화를 선택해 주세요.</p>
+						<span class="time">13:41</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“환전해줘”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>HAI뱅킹에서 환전을 위해 등록하신 을지로 지점에서 수령하시겠습니까?</p>
+						<span class="time">13:39</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“내 잔액 알려줘”</div>
+				</li>
+				<li class="you">
+					<div class="answerType05 answerStyle05"><!-- answerType01~06 답변타입별 class / answerStyle01~07 : 시나리오 답변 별 class-->
+						<!-- 2018-05-17 하이차트 커스텀 (막대그래프) [S] -->
+						<div class="graphArea">
+							<div class="graphType1"><!-- graphType1 그래프 타입별 class : 세로형 막대그래프  -->
+								<div class="graphTxt">
+									<p class="date">2018.03.07<span>(이전 확인일자)</span></p>
+									<p class="won"><b>244,252,354</b>원</p>
+								</div>
+								<div class="graphTxt">
+									<p class="date">2018.04.07<span>(현재)</span></p>
+									<p class="won"><b>245,497,365</b>원</p>
+									<p class="won plus">+<b>1,245,015</b>원</p>
+									<!-- <p class="won minus">-<b>1,245,015</b>원</p> -->
+								</div>
+								<div class="graph">
+									<div id="graphStyle1" class="graphStyle1"></div>
+								</div>
+								<p class="gInfoTxt">* 이전 확인일자란? HAI뱅킹에서 자산 조회 또는 1Q bank 앱 로그인 하신 가장 최근일자입니다. (당일제외)</p>
+							</div>
+							<script language="javascript" type="text/javascript">
+								Highcharts.chart('graphStyle1', {
+									chart: {
+										type: 'column',
+										spacingBottom: 0,
+										spacingTop: 0,
+										spacingLeft: 0,
+										spacingRight: 0,
+										height:150
+									},
+									title: {
+										text: '잔액 그래프'
+									},
+									xAxis: {
+										categories: ['이전 확인일자', '현재'],
+									},
+									yAxis: {
+										min: 0,
+										max: 100,
+										title: {
+										  text: '잔액'
+										}
+									},
+									plotOptions: {
+										column: {stacking: 'normal'}
+									},
+									colors:["#7cb5ec","#fd405d","#18c49e"], /* 감소, 증가, 잔액 */
+									series: [{
+									name: '감소(%)',
+									data: [0, 0]
+									}, {
+									name: '증가(%)',
+									data: [0, 40]
+									}, {
+									name: '잔액(%)',
+									data: [80, 60]
+									}]
+								});
+							</script>
+						</div>
+						<div class="graphArea">
+							<div class="graphType2"><!-- graphType2 그래프 타입별 class : 가로형 막대그래프-->
+								<div class="graphBar graphStyle01"><!--  graphStyle01~4 가로형 막대그래프 컬러별 class -->
+									<p class="graphTit">예금/신탁</p>
+									<div class="grBar">
+										<p class="won"><b>101,230,000</b>원</p>
+										<p class="per">50%</p>
+									</div>
+									<div class="graph">
+										<div id="barStyle1" class="barStyle"></div>
+									</div>
+								</div>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('barStyle1', {
+										chart: {
+											type: 'bar',
+											spacingBottom: 0,
+											spacingTop: 0,
+											height: 85
+										},
+										title: {
+											text: '예금/신탁'
+										},
+										yAxis: {
+											min: 0,
+											max: 100,
+											title: {
+												text: '예금/신탁 비율'
+											}
+										},
+										legend: {
+											reversed: true,
+										},
+										colors:["#5ed4c1"],
+										series: [{
+											name: '예금/신탁(%)',
+											data: [50]
+										}]
+									});
+								</script>
+							</div>
+						</div>
+						<div class="graphArea">
+							<div class="graphType2"><!-- graphType2 그래프 타입별 class : 가로형 막대그래프-->
+								<div class="graphBar graphStyle02"><!--  graphStyle01~4 가로형 막대그래프 컬러별 class -->
+									<p class="graphTit">펀드</p>
+									<div class="grBar">
+										<p class="won"><b>17,000,000</b>원</p>
+										<p class="per">16%</p>
+									</div>
+									<div class="graph">
+										<div id="barStyle2" class="barStyle"></div>
+									</div>
+								</div>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('barStyle2', {
+										chart: {
+											type: 'bar',
+											spacingBottom: 0,
+											spacingTop: 0,
+											height: 85
+										},
+										title: {
+											text: '펀드'
+										},
+										yAxis: {
+											min: 0,
+											max: 100,
+											title: {
+												text: '펀드 비율'
+											}
+										},
+										legend: {
+											reversed: true,
+										},
+										colors:["#f5c175"],
+										series: [{
+											name: '펀드(%)',
+											data: [16]
+										}]
+									});
+								</script>
+							</div>
+						</div>
+						<div class="graphArea">
+							<div class="graphType2"><!-- graphType2 그래프 타입별 class : 가로형 막대그래프-->
+								<div class="graphBar graphStyle03"><!--  graphStyle01~4 가로형 막대그래프 컬러별 class -->
+									<p class="graphTit">외화/외화신탁</p>
+									<div class="grBar">
+										<p class="won"><b>800,242,325</b>원</p>
+										<p class="per">28%</p>
+									</div>
+									<div class="graph">
+										<div id="barStyle3" class="barStyle"></div>
+									</div>
+								</div>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('barStyle3', {
+										chart: {
+											type: 'bar',
+											spacingBottom: 0,
+											spacingTop: 0,
+											height: 85
+										},
+										title: {
+											text: '외화/외화신탁'
+										},
+										yAxis: {
+											min: 0,
+											max: 100,
+											title: {
+												text: '외화/외화신탁 비율'
+											}
+										},
+										legend: {
+											reversed: true,
+										},
+										colors:["#a77fdf"],
+										series: [{
+											name: '외화/외화신탁(%)',
+											data: [28]
+										}]
+									});
+								</script>
+							</div>
+						</div>
+						<div class="graphArea">
+							<div class="graphType2"><!-- graphType2 그래프 타입별 class : 가로형 막대그래프-->
+								<div class="graphBar graphStyle04"><!--  graphStyle01~4 가로형 막대그래프 컬러별 class -->
+									<p class="graphTit">대출</p>
+									<div class="grBar">
+										<p class="won"><b>17,000,000</b>원</p>
+										<p class="per">11%</p>
+									</div>
+									<div class="graph">
+										<div id="barStyle4" class="barStyle"></div>
+									</div>
+								</div>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('barStyle4', {
+										chart: {
+											type: 'bar',
+											spacingBottom: 0,
+											spacingTop: 0,
+											height: 85
+										},
+										title: {
+											text: '대출'
+										},
+										yAxis: {
+											min: 0,
+											max: 100,
+											title: {
+												text: '대출 비율'
+											}
+										},
+										legend: {
+											reversed: true,
+										},
+										colors:["#ef8b89"],
+										series: [{
+											name: '대출(%)',
+											data: [11]
+										}]
+									});
+								</script>
+							</div>
+						</div>
+						<!-- 2018-05-17 하이차트 커스텀 (막대그래프) [E] -->
+						<!-- 2018-05-17 하이차트 커스텀 (선/막대 그래프) [S] -->
+						<div class="graphArea">
+							<div class="graphType3">
+								<div class="graph">
+									<div id="lineStyle" class="lineStyle"></div>
+								</div>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('lineStyle', {
+										chart: {
+											type: 'line',
+											spacingBottom: 0,
+											spacingTop: 0,
+											spacingLeft: 0,
+											spacingRight: 0,
+											height: 150
+										},
+										title: {
+											text: '과거 잔액비교'
+										},
+										xAxis: {
+											categories: ['전월', '전주', '전일', '현재']
+										},
+										yAxis: {
+											title: {
+											text: ''
+											}
+										},
+										plotOptions: {
+											line: {
+											dataLabels: {
+												enabled: true
+											},
+											enableMouseTracking: false
+											}
+										},
+										colors:["#28cab5"],
+										series: [{
+											name: '잔액',
+											data: [80, 110, 90, 100]
+										}]
+									});
+								</script>
+								<div class="graph">
+									<div id="upDownStyle" class="upDownStyle"></div>
+								</div>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('upDownStyle', {
+										chart: {
+											type: 'column',
+											spacingBottom: 0,
+											spacingTop: 0,
+											spacingLeft: 0,
+											spacingRight: 0,
+											height: 105
+										},
+										title: {
+											text: '과거 잔액비교 증가 감소'
+										},
+										xAxis: {
+											type: 'category'
+										},
+										yAxis: {
+											title: {
+												text: ''
+											}
+										},
+										legend: {
+											enabled: false
+										},
+										plotOptions: {
+											series: {
+												borderWidth: 0,
+												dataLabels: {
+													enabled: true,
+													format: '{point.y:1f}'
+												}
+											}
+										},
+										tooltip: {
+											headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+											pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:2f}</b><br/>'
+										},
+										"series": [
+										{
+											"name": "잔액",
+											"colorByPoint": false,
+											"data": [
+											{
+												"name": "전월",
+												"color": "#28cab5",
+												"y": 20,
+											},
+											{
+												"name": "전주",
+												"color": "#28cab5", //증가 컬러
+												"y": 10,
+											},
+											{
+												"name": "전일",
+												"color": "#c7c7c7", //감소 컬러
+												"y": -20,
+											},
+											{
+												"name": "현재",
+												"color": "#28cab5",
+												"y": null,
+											}
+											]
+										}
+										]
+									});
+								</script>
+							</div>
+						</div>
+						<!-- 2018-05-17 하이차트 커스텀 (선/막대 그래프) [E] -->
+						<!-- 2018-05-17 하이차트 커스텀 (원 그래프) [S] -->
+						<div class="graphArea">
+							<div class="graphType4">
+								<p class="txt">“엄마”님께 이번달 송금한 내역은<br>총3건, 30만원 입니다.</p>
+								<p class="sendPrice">300,000원 <span>10%</span></p>
+								<div class="graph">
+									<div id="pieStyle" class="pieStyle"></div>
+								</div>
+								<p class="totalPrice">총이체금액 <span>3,000,000원</span></p>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('pieStyle', {
+										chart: {
+											plotBackgroundColor: null,
+											plotBorderWidth: null,
+											plotShadow: false,
+											spacingTop: 0,
+											spacingLeft: 0,
+											spacingRight: 0,
+											height: 230,
+											type: 'pie'
+										},
+										title: {
+											text: '별칭이체결과'
+										},
+										tooltip: {
+											pointFormat: '{series.name}: {point.percentage:.1f}%'
+										},
+										plotOptions: {
+											pie: {
+											allowPointSelect: true,
+											cursor: 'pointer',
+											dataLabels: {
+												enabled: true,
+												format: '{point.name}: {point.percentage:.1f} %',
+												style: {
+												color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+												}
+											}
+											}
+										},
+										"series": [
+											{
+												"name": "잔액",
+												"colorByPoint": false,
+												"selected": true,
+												"data": [
+												{
+													"name": "엄마",
+													"color": "#51dabc",
+													"y": 10,
+												},
+												{
+													"name": '기타',
+													"color": "#e0e0e0", 
+													"y": 90,
+												}
+												]
+											}
+										]
+									});
+								</script>
+							</div>
+						</div>
+						<!-- 2018-05-17 하이차트 커스텀 (원 그래프) [E] -->
+						<!-- 2018-05-17 하이차트 커스텀 (막대(%) 그래프) [S] -->
+						<div class="asBox">
+							<div class="abata">아바타자리</div>
+							<p class="txt">‘하와이’ HAI 적금의 목표금액 200만원 중<br>현재 100만원 불입하여 50% 목표달성<br>하셨습니다. </p>
+							<div class="graphType5">
+								<div class="graph">
+									<div id="percentStyle" class="percentStyle"></div>
+								</div>
+								<div class="price">
+									<p>적금달성금액<span>1,000,000원</span></p>
+									<p>총목표금액<span>2,000,000원</span></p>
+								</div>
+								<p class="captionR">*기준일 : 2018.03.01</p>
+								<style type="text/css">
+								<!--
+
+								//-->
+								</style>
+								<script language="javascript" type="text/javascript">
+									Highcharts.chart('percentStyle', {
+										chart: {
+											type: 'bar',
+											spacingBottom: 0,
+											spacingTop: 0,
+											spacingLeft: 0,
+											spacingRight: 0,
+											height: 120
+										},
+										title: {
+											text: '적금달성금액'
+										},
+										xAxis: {
+											categories: [''],
+											title: {
+												text: null
+											}
+										},
+										yAxis: {
+											min: 0,
+											max: 100,
+											title: {
+												text: null,
+												align: 'high'
+											},
+											labels: {
+												overflow: 'justify'
+											}
+										},
+										tooltip: {
+											valueSuffix: ' %'
+										},
+										plotOptions: {
+											bar: {
+												dataLabels: {
+													enabled: true,
+													format: '{point.y:1f}%'
+												}
+											}
+										},
+										legend: {
+											enabled: false
+										},
+										credits: {
+											enabled: false
+										},
+										colors:["#28b38a"],
+										series: [{
+											name: '적금달성금액',
+											data: [50]
+										}]
+									});
+								</script>
+							</div>
+						</div>
+						<!-- 2018-05-17 하이차트 커스텀 (막대(%) 그래프) [E] -->
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- 메세지창 [S] -->
+
+		<!-- 키보드 관련 영역 [S] -->
+		<section class="underWrap">
+			<div class="underArea">
+				<a href="#layerPopMIC" class="layerBtn micBtn">마이크</a><!-- <a class="layerBtn(버튼 공통 class명)"> href 안에 id값에 해당하는 레이어팝업을 띄워줍니다. -->
+				<div class="inputArea">
+					<p class="inputStyle"><input type="text" id="chatInp" title="HAI에게 물어보세요." value="HAI에게 물어보세요." name=""/></p>
+					<a href="javascript:;" onclick="addChat()" class="sendBtn">전송</a>
+				</div>
+				<a href="#layerPopCam" class="layerBtn carmeraBtn">카메라</a>
+			</div>
+			<!-- 퀵메뉴 -->
+			<div class="quickMenu">
+				<ul class="qMenu">
+					<li><a href="#">계좌조회</a></li>
+					<li><a href="#">계좌이체</a></li>
+					<li><a href="#">거래내역조회</a></li>
+					<li><a href="#">환율조회</a></li>
+				</ul>
+				<a href="#" class="menuBtn">메뉴보기</a>
+			</div>
+			<!--// 퀵메뉴 -->
+			
+			<!-- 탭 메뉴 레이어 -->
+			<div class="tabArea">
+				<div class="tabMenu">
+					<ul class="tabBtn">
+						<li><a href="#tabCont1">예적금</a></li>
+						<li><a href="#tabCont2">대출</a></li>
+						<li><a href="#tabCont3">외환</a></li>
+						<li><a href="#tabCont4">펀드</a></li>
+						<li><a href="#tabCont5">기타</a></li>
+					</ul>
+					<a href="#" class="tabClose">닫기</a>
+				</div>
+				<div class="tabCont" id="tabCont1">
+					<ul class="">
+						<li><a href="#">tabCont1</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont2">
+					<ul class="">
+						<li><a href="#">tabCont2</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont3">
+					<ul class="">
+						<li><a href="#">tabCont3</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont4">
+					<ul class="">
+						<li><a href="#">tabCont4</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont5">
+					<ul class="">
+						<li><a href="#">tabCont5</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+					</ul>
+				</div>
+				<a href="#" class="speadBtn">펼침/축소</a>
+			</div>
+			<!--// 탭 메뉴 레이어 -->
+			
+		</section>
+		<!-- 키보드 관련 영역 [E] -->
+	</div>
+	<script src="js/chatbot.js"></script>
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function(){
+			underAreaEvent(); // 키보드영역 관련 이벤트
+			layerPopEvent(); // 레이어 팝업 관련 이벤트
+			btnToggle(); // 토글 버튼 관련 이벤트
+		});
+	</script>
+
+</body>
+</html>
+

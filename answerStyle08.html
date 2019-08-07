@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>07.적급가입 - HAI 내손안에 금융비서</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Referrer" content="origin">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<script src="js/jquery.min.1.11.0.js"></script>
+	
+	<link rel="stylesheet" href="css/chatbot.css" type="text/css">
+</head>
+<body>
+	<div class="chatbotWrap">
+		<!-- header [S] -->
+		<header>
+			<a href="#" class="infoBtn">안내</a>
+			<h1><img src="images/logo.png" alt="HAI 내손안에 금융비서"/></h1>
+			<a href="#" class="close">닫기</a>
+		</header>
+		<!-- header [E] -->
+		
+		<!-- 메세지창 [S] -->
+		<section class="messageArea">
+			<ul class="talk">
+				<li class="me">
+					<div>“환전해줘”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>HAI뱅킹에서 환전을 위해 등록하신 을지로 지점에서 수령하시겠습니까?</p>
+						<span class="time">13:39</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“을지로지점에서 환전하고 싶은데... 가능해?”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>을지로지점에서 환전신청을 도와드겠습니다. <br/>환전하시려는 통화를 선택해 주세요.</p>
+						<span class="time">13:41</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“환전해줘”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>HAI뱅킹에서 환전을 위해 등록하신 을지로 지점에서 수령하시겠습니까?</p>
+						<span class="time">13:39</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“HAI 전용적금 가입할래”</div>
+				</li>
+				<li class="you">
+					<div class="answerStyle07"><!-- 적급가입 style class -->
+						<!-- 01 적금가입 [S] -->
+						<div class="asBox">
+							<div class="img">
+								
+							</div>
+						</div>
+						<!-- 01 적금가입 [E] -->
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- 메세지창 [S] -->
+
+		<!-- 키보드 관련 영역 [S] -->
+		<section class="underWrap">
+			<div class="underArea">
+				<a href="#layerPopMIC" class="layerBtn micBtn">마이크</a><!-- <a class="layerBtn(버튼 공통 class명)"> href 안에 id값에 해당하는 레이어팝업을 띄워줍니다. -->
+				<div class="inputArea">
+					<p class="inputStyle"><input type="text" id="chatInp" title="HAI에게 물어보세요." value="HAI에게 물어보세요." name=""/></p>
+					<a href="javascript:;" onclick="addChat()" class="sendBtn">전송</a>
+				</div>
+				<a href="#layerPopCam" class="layerBtn carmeraBtn">카메라</a>
+			</div>
+			<!-- 퀵메뉴 -->
+			<div class="quickMenu">
+				<ul class="qMenu">
+					<li><a href="#">계좌조회</a></li>
+					<li><a href="#">계좌이체</a></li>
+					<li><a href="#">거래내역조회</a></li>
+					<li><a href="#">환율조회</a></li>
+				</ul>
+				<a href="#" class="menuBtn">메뉴보기</a>
+			</div>
+			<!--// 퀵메뉴 -->
+			
+			<!-- 탭 메뉴 레이어 -->
+			<div class="tabArea">
+				<div class="tabMenu">
+					<ul class="tabBtn">
+						<li><a href="#tabCont1">예적금</a></li>
+						<li><a href="#tabCont2">대출</a></li>
+						<li><a href="#tabCont3">외환</a></li>
+						<li><a href="#tabCont4">펀드</a></li>
+						<li><a href="#tabCont5">기타</a></li>
+					</ul>
+					<a href="#" class="tabClose">닫기</a>
+				</div>
+				<div class="tabCont" id="tabCont1">
+					<ul class="">
+						<li><a href="#">tabCont1</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont2">
+					<ul class="">
+						<li><a href="#">tabCont2</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+						<li><a href="#">거래중지 계좌 다시 사용하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont3">
+					<ul class="">
+						<li><a href="#">tabCont3</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont4">
+					<ul class="">
+						<li><a href="#">tabCont4</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont5">
+					<ul class="">
+						<li><a href="#">tabCont5</a></li>
+						<li><a href="#">예금상품 추천해줘</a></li>
+						<li><a href="#">입출금 거래내역을 확인하고 싶어</a></li>
+						<li><a href="#">적금 우대금리 어떻게 받는지 알려줘</a></li>
+					</ul>
+				</div>
+				<a href="#" class="speadBtn">펼침/축소</a>
+			</div>
+			<!--// 탭 메뉴 레이어 -->
+			
+		</section>
+		<!-- 키보드 관련 영역 [E] -->
+	</div>
+	<script src="js/chatbot.js"></script>
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function(){
+			underAreaEvent(); // 키보드영역 관련 이벤트
+			layerPopEvent(); // 레이어 팝업 관련 이벤트
+		});
+	</script>
+</body>
+</html>
+

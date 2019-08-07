@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>HAI 내손안에 금융비서</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Referrer" content="origin">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" href="css/chatbot.css" type="text/css">
+	<script src="js/jquery.min.1.11.0.js"></script>
+	<script src="js/chatbot.js"></script>
+</head>
+<body>
+	<div class="chatbotWrap">
+		<!-- header [S] -->
+		<header>
+			<a href="javascript:history.back();" class="backBtn">뒤로가기</a>
+			<h1><img src="images/logo.png" alt="HAI 내손안에 금융비서"/></h1>
+			<a href="#" class="infoBtn">안내</a>
+			<a href="#" class="close">닫기</a>
+		</header>
+		<!-- header [E] -->
+		
+		<!-- 메세지창 [S] -->
+		<section class="messageArea">
+			<ul class="talk">
+				<li class="me">
+					<div>“환전해줘”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>HAI뱅킹에서 환전을 위해 등록하신 을지로 지점에서 수령하시겠습니까?</p>
+						<span class="time">13:39</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“하나은행 을지로지점에서 500불 환전하고 싶은데 가능할까요?”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>을지로지점에서 환전신청을 도와드겠습니다. 환전하시려는 통화를 선택해 주세요.</p>
+						<span class="time">13:41</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“환전해줘”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>HAI뱅킹에서 환전을 위해 등록하신 을지로 지점에서 수령하시겠습니까?</p>
+						<span class="time">13:39</span>
+					</div>
+				</li>
+				<li class="me">
+					<div>“을지로지점에서 환전하고 싶은데 가능해?”</div>
+				</li>
+				<li class="you">
+					<div>
+						<p>* 마지막 메세지 *</p>
+						<span class="time">13:41</span>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- 메세지창 [S] -->
+
+		<!-- 키보드 관련 영역 [S] -->
+		<section class="underWrap">
+			<div class="underArea">
+				<a href="#layerPopMIC" class="lyBtn micBtn">마이크</a><!-- <a class="layerBtn(버튼 공통 class명)"> href 안에 id값에 해당하는 레이어팝업을 띄워줍니다. -->
+				<div class="inputArea">
+					<p class="inputStyle"><input type="text" id="chatInp" title="HAI에게 물어보세요." value="HAI에게 물어보세요." name=""/></p>
+					<a href="javascript:;" onclick="addChat()" class="sendBtn">전송</a>
+				</div>
+				<a href="#layerPopCam" class="lyBtn carmeraBtn">카메라</a>
+			</div>
+			<!-- 퀵메뉴 -->
+			<div class="quickMenu">
+				<ul class="qMenu">
+					<li><a href="#">계좌조회</a></li>
+					<li><a href="#">계좌이체</a></li>
+					<li><a href="#">거래내역조회</a></li>
+					<li><a href="#">환율조회</a></li>
+					<li><a href="#">공과금 납부</a></li>
+					<li><a href="#">예금추천</a></li>
+					<li><a href="#">적금추천</a></li>
+					<li><a href="#">펀드추천</a></li>
+					<li><a href="#">대출추천</a></li>
+					<li><a href="#">자산현황</a></li>
+				</ul>
+				<a href="#" class="menuBtn">메뉴보기</a>
+			</div>
+			<!--// 퀵메뉴 -->
+			
+			<!-- 탭 메뉴 레이어 -->
+			<div class="tabArea">
+				<div class="tabMenu">
+					<ul class="tabBtn">
+						<li><a href="#tabCont1">계좌조회</a></li>
+						<li><a href="#tabCont2">별칭</a></li>
+						<li><a href="#tabCont3">이체</a></li>
+						<li><a href="#tabCont4">공과금</a></li>
+						<li><a href="#tabCont5">지로</a></li>
+						<li><a href="#tabCont6">관리비</a></li>
+						<li><a href="#tabCont7">하이렌즈</a></li>
+						<li><a href="#tabCont8">환율조회</a></li>
+						<li><a href="#tabCont9">환전거래</a></li>
+						<li><a href="#tabCont10">해외송금</a></li>
+						<li><a href="#tabCont11">예/적금</a></li>
+						<li><a href="#tabCont12">펀드</a></li>
+						<li><a href="#tabCont13">대출</a></li>
+						<li><a href="#tabCont14">해외송금</a></li>
+						<li><a href="#tabCont15">예/적금계산기</a></li>
+						<li><a href="#tabCont16">대출 계산기</a></li>
+						<li><a href="#tabCont17">스케줄</a></li>
+						<li><a href="#tabCont18">영업점 찾기</a></li>
+						<li><a href="#tabCont19">자산현황</a></li>
+					</ul>
+					<a href="#" class="tabClose">닫기</a>
+				</div>
+				<div class="tabCont" id="tabCont1">
+					<ul>
+						<li><a href="#">계좌잔액 조회해줘</a></li>
+						<li><a href="#">계좌 잔액이 얼마에요?</a></li>
+						<li><a href="#">내 잔액 알려줘</a></li>
+						<li><a href="#">내계좌에 얼마가 있어?</a></li>
+						<li><a href="#">통장 잔고 알려줘</a></li>
+						<li><a href="#">잔액이 궁금해</a></li>
+						<li><a href="#">계좌 잔액 체크해줘</a></li>
+						<li><a href="#">계좌에 남은 돈이 얼마야?</a></li>
+						<li><a href="#">통장에 얼마 있는지 보여줘</a></li>
+						<li><a href="#">남아있는 잔액이 얼마있는지 확인해줘</a></li>
+						<li><a href="#">어제 보다 얼마가 차이나?</a></li>
+						<li><a href="#">지난주 보다 얼마가 차이나?</a></li>
+						<li><a href="#">지난달 보다 얼마가 차이나?</a></li>
+						<li><a href="#">어제 잔액과 비교해줘</a></li>
+						<li><a href="#">지난주 잔액과 비교해줘</a></li>
+						<li><a href="#">지난달 잔액과 비교해줘</a></li>
+						<li><a href="#">잔액이 어제 보다 얼마나 늘었어?</a></li>
+						<li><a href="#">잔액이 지난주 보다 얼마나 늘었어?</a></li>
+						<li><a href="#">잔액이 지난달 보다 얼마나 늘었어?</a></li>
+						<li><a href="#">거래내역 조회해줘</a></li>
+						<li><a href="#">거래한내역 확인해줘</a></li>
+						<li><a href="#">계좌 거래 내역 체크해줘</a></li>
+						<li><a href="#">계좌 사용 내역 궁금해</a></li>
+						<li><a href="#">입출금 내역 알려줘</a></li>
+						<li><a href="#">계좌 입출금 내역 확인해줘</a></li>
+						<li><a href="#">최근 입출금 내역을 알려줄 수 있니?</a></li>
+						<li><a href="#">입출금계좌 거래내역이 궁금해</a></li>
+						<li><a href="#">내 통장 거래내역을 보내줘</a></li>
+						<li><a href="#">전체계좌를 보여줘</a></li>
+						<li><a href="#">전체계좌 잔액을 알려줘</a></li>
+						<li><a href="#">내 전체계좌 알려줘</a></li>
+						<li><a href="#">전체계좌 내역 보여줘</a></li>
+						<li><a href="#">전체계좌 리스트 보내줘</a></li>
+						<li><a href="#">전체계좌 통장 잔액이 얼마야?</a></li>
+						<li><a href="#">전체계좌 잔고를 체크해줘</a></li>
+						<li><a href="#">전계좌 조회해줘</a></li>
+						<li><a href="#">모든 계좌 보여줘</a></li>
+						<li><a href="#">모든 계좌에 남은 금액을 보여줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont2">
+					<ul>
+						<li><a href="#">별칭 조회해줘</a></li>
+						<li><a href="#">별칭 알려줘</a></li>
+						<li><a href="#">별칭이 궁금해</a></li>
+						<li><a href="#">별칭을 다보여줘</a></li>
+						<li><a href="#">내 별칭이 뭐야</a></li>
+						<li><a href="#">별칭 내역 조회해줘</a></li>
+						<li><a href="#">별칭을 확인해줘</a></li>
+						<li><a href="#">별칭 리스트 뽑아줘</a></li>
+						<li><a href="#">모든 별칭을 보여줘</a></li>
+						<li><a href="#">별칭 한번에 조회해</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont3">
+					<ul>
+						<li><a href="#">최근 이체한 목록에서 이체해줘</a></li>
+						<li><a href="#">최근에 이체한 내역에서 이체할께</a></li>
+						<li><a href="#">최근 이체한 리스트에서 송금할꺼야</a></li>
+						<li><a href="#">최근 송금 목록에서 송금할께</a></li>
+						<li><a href="#">최근 돈보낸 내역에서 송금해줘</a></li>
+						<li><a href="#">최근 내가 돈보낸 사람에게 송금해줘</a></li>
+						<li><a href="#">최근 내가 입금한 계좌로 돈보낼꺼야</a></li>
+						<li><a href="#">최근 이체 목록을 불러와서 이체해줘</a></li>
+						<li><a href="#">최근에 이체했던 내역에 대해 송금해줘</a></li>
+						<li><a href="#">얼마전에 이체한 내역으로 송금할께</a></li>
+						<li><a href="#">자주쓰는 이체목록 불러와서 이체해줘</a></li>
+						<li><a href="#">자주쓰는 이체내역에 대해 이체해줘</a></li>
+						<li><a href="#">자주쓰는 이체 리스트에서 송금할꺼야</a></li>
+						<li><a href="#">자주쓰는 송금 목록으로 송금할께</a></li>
+						<li><a href="#">내가 자주입금하는 목록으로 이체해줘</a></li>
+						<li><a href="#">많이 입금한 계좌로 이체해줘</a></li>
+						<li><a href="#">자주 입금했던 리스트에 송금할께</a></li>
+						<li><a href="#">자주 송금한 내역으로 이체해줘</a></li>
+						<li><a href="#">내가 자주 돈보낸 계좌 목록에 대해 송금할께</a></li>
+						<li><a href="#">자주 이체한 리스트로 송금해줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont4">
+					<ul>
+						<li><a href="#">공과금 납부할 것 궁금해</a></li>
+						<li><a href="#">공과금 내줄래</a></li>
+						<li><a href="#">내가 납부할 공과금이 얼마</a></li>
+						<li><a href="#">내야할 공과금 알고 싶어</a></li>
+						<li><a href="#">보내야할 공과금 알려줘</a></li>
+						<li><a href="#">세금 납부할 것 궁금해</a></li>
+						<li><a href="#">납부할 세금 조회해줘</a></li>
+						<li><a href="#">지방세 조회해줘</a></li>
+						<li><a href="#">지방세 내역이 궁금해</a></li>
+						<li><a href="#">내가 지방세 얼마내야해?</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont5">
+					<ul>
+						<li><a href="#">지로요금 납부해줘</a></li>
+						<li><a href="#">지로요금이 궁금해</a></li>
+						<li><a href="#">지로요금을 확인해줘</a></li>
+						<li><a href="#">지로납부 해줘봐</a></li>
+						<li><a href="#">지로를 납부할께</a></li>
+						<li><a href="#">지로요금 처리해줘</a></li>
+						<li><a href="#">이번달 지로를 납부해줘</a></li>
+						<li><a href="#">내가 납부할 지로요금 확인해봐</a></li>
+						<li><a href="#">지로번호 입력할께</a></li>
+						<li><a href="#">지로번호로 납부할께</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont6">
+					<ul>
+						<li><a href="#">아파트 관리비 납부해줘</a></li>
+						<li><a href="#">이번달 아파트 관리비를 납부할께</a></li>
+						<li><a href="#">우리 아파트 관리비 이체할께</a></li>
+						<li><a href="#">아파트비 내줘</a></li>
+						<li><a href="#">아파트 공과금 송금해줘</a></li>
+						<li><a href="#">관리비 이체해줘</a></li>
+						<li><a href="#">지난달 아파트 관리비를 송금할께</a></li>
+						<li><a href="#">아파트 관리비 고지서 납부할께</a></li>
+						<li><a href="#">아파트 관리실에 관리비 보내줘</a></li>
+						<li><a href="#">이번달 관리비 처리해줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont7">
+					<ul>
+						<li><a href="#">하이랜즈</a></li>
+						<li><a href="#">하이렌즈</a></li>
+						<li><a href="#">HAI Lens</a></li>
+						<li><a href="#">공과금 촬영</a></li>
+						<li><a href="#">지로 쵤영</a></li>
+						<li><a href="#">세금 촬영</a></li>
+						<li><a href="#">공과금 사진</a></li>
+						<li><a href="#">지로 사진</a></li>
+						<li><a href="#">세금 사진</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont8">
+					<ul>
+						<li><a href="#">미국달러로 백만원 환전하면 얼마야?</a></li>
+						<li><a href="#">미국달러로 500달러 환전하면 얼마에요?</a></li>
+						<li><a href="#">미국으로 여행갈껀데 환율 어떼?</a></li>
+						<li><a href="#">해외송금 보낼껀데 환율 알려줘</a></li>
+						<li><a href="#">미국에서 돈보내줬는데 지금 환율 어때?</a></li>
+						<li><a href="#">해외에서 송금받을 때 환율 알려줘</a></li>
+						<li><a href="#">미국달러 팔때 환율 알려줘</a></li>
+						<li><a href="#">미국환율 알려줘</a></li>
+						<li><a href="#">미국 현찰살 때 환율 알려줘</a></li>
+						<li><a href="#">환율 궁금해</a></li>
+						<li><a href="#">환율조회</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont9">
+					<ul>
+						<li><a href="#">미국달 500달러 환전해줘</a></li>
+						<li><a href="#">미국달러 500 환전해줘</a></li>
+						<li><a href="#">미국달러 환전해줘</a></li>
+						<li><a href="#">500달러 환전</a></li>
+						<li><a href="#">환전하고 싶어</a></li>
+						<li><a href="#">환전 신청해줘</a></li>
+						<li><a href="#">인천국제공항지점에서 환전 신청</a></li>
+						<li><a href="#">미국달러로 바꾸고 싶어</a></li>
+						<li><a href="#">500달러로 돈 바꾸고 싶어</a></li>
+						<li><a href="#">환전신청</a></li>
+						<li><a href="#">바꿀 수 있는 돈이야?</a></li>
+						<li><a href="#">바꿀 수 있는 돈인지 알려줘</a></li>
+						<li><a href="#">이 돈 바꿀 수 있어?</a></li>
+						<li><a href="#">이거 환전할 수 있어?</a></li>
+						<li><a href="#">팔 수 있는 돈인지 확인해줘</a></li>
+						<li><a href="#">하나은행에서 환전 할 수 있는 돈이야?</a></li>
+						<li><a href="#">어느나라 돈인지 알려줘</a></li>
+						<li><a href="#">한국 돈으로 얼마야?</a></li>
+						<li><a href="#">환전가능여부</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont10">
+					<ul>
+						<li><a href="#">해외송금 보내줘</a></li>
+						<li><a href="#">해외송금 보내려고</a></li>
+						<li><a href="#">해외로 돈 보낼 꺼야</a></li>
+						<li><a href="#">외국으로 돈 보내고 싶어</a></li>
+						<li><a href="#">미국으로 송금</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont11">
+					<ul>
+						<li><a href="#">예금 추천해줘</a></li>
+						<li><a href="#">목돈 불리고 싶어</a></li>
+						<li><a href="#">목돈 있는데</a></li>
+						<li><a href="#">돈 불리고 싶어</a></li>
+						<li><a href="#">예금 상품 추천해줘</a></li>
+						<li><a href="#">괜찮은 예금 추천해줘</a></li>
+						<li><a href="#">금리 높은 예금 추천해줘</a></li>
+						<li><a href="#">이자 높은 예금 추천해줘</a></li>
+						<li><a href="#">금리 좋은 예금 추천해줘</a></li>
+						<li><a href="#">최근 나온 예금 추천해줘</a></li>
+						<li><a href="#">요즘 나온 예금 추천해줘</a></li>
+						<li><a href="#">따끈따끈한 예금 추천해줘</a></li>
+						<li><a href="#">HAI가 추천하는 예금은 뭐야?</a></li>
+						<li><a href="#">니가 추천하는 예금 있어?</a></li>
+						<li><a href="#">맘에드는 예금 좀 추천해주라</a></li>
+						<li><a href="#">적금 추천해줘</a></li>
+						<li><a href="#">목돈을 모으고 싶어</a></li>
+						<li><a href="#">목돈이 필요한데</a></li>
+						<li><a href="#">적금 상품 추천해줘</a></li>
+						<li><a href="#">금리 높은 적금 추천해줘</a></li>
+						<li><a href="#">이자 높은 적금 추천해줘</a></li>
+						<li><a href="#">금리 좋은 적금 추천해줘</a></li>
+						<li><a href="#">최근 나온 적금 추천해줘</a></li>
+						<li><a href="#">요즘 나온 적금 추천해줘</a></li>
+						<li><a href="#">따끈따끈한 적금 추천해줘</a></li>
+						<li><a href="#">HAI가 추천하는 적금은 뭐야?</a></li>
+						<li><a href="#">니가 추천하는 적금 있어?</a></li>
+						<li><a href="#">맘에드는 적금 좀 추천해주라</a></li>
+						<li><a href="#">HAI에서 직접 가입 가능한 적금 알려줘</a></li>
+						<li><a href="#">HAI에서 가입할 수 있는 적금 추천해줘</a></li>
+						<li><a href="#">HAI에서 가입할 수 있는 적금 없어?</a></li>
+						<li><a href="#">편리하게 가입할 수 있는 적금 알려줘</a></li>
+						<li><a href="#">쉽게 가입할 수 있는 적금알려줘</a></li>
+						<li><a href="#">빠르게 가입할 수 있는 적금 알려줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont12">
+					<ul>
+						<li><a href="#">펀드 추천해줘</a></li>
+						<li><a href="#">많이 불릴 수 있는 상품 추천해줘</a></li>
+						<li><a href="#">투자성향 분석하고 싶어</a></li>
+						<li><a href="#">펀드 내 성향에 따라 추천해줘</a></li>
+						<li><a href="#">나한테 맞는 펀드 추천해줘</a></li>
+						<li><a href="#">수익률 높은 펀드 추천해줘</a></li>
+						<li><a href="#">이익이 많이 나는 펀드 추천해줘</a></li>
+						<li><a href="#">많이 팔린 펀드 추천해줘</a></li>
+						<li><a href="#">잘 팔리는 펀드 추천해줘</a></li>
+						<li><a href="#">계속 잘 나가는 펀드 추천해줘</a></li>
+						<li><a href="#">쭉 잘팔리는 펀드 추천해줘</a></li>
+						<li><a href="#">최근 잘팔리는 펀드 추천해줘</a></li>
+						<li><a href="#">최근 수익률 높은 펀드 추천해줘</a></li>
+						<li><a href="#">펀드 수익률 알려줘</a></li>
+						<li><a href="#">내 펀드 수익률 알고싶어</a></li>
+						<li><a href="#">펀드 올랐나?</a></li>
+						<li><a href="#">펀드 떨어졌나?</a></li>
+						<li><a href="#">펀드 궁금하다</a></li>
+						<li><a href="#">펀드 어떻게 됐지?</a></li>
+						<li><a href="#">펀드 괜찮나?</a></li>
+						<li><a href="#">펀드 잘있나?</a></li>
+						<li><a href="#">내펀드 알려줘</a></li>
+						<li><a href="#">내펀드 수익률이 궁금해요</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont13">
+					<ul>
+						<li><a href="#">대출 추천해줘</a></li>
+						<li><a href="#">돈 빌리고 싶어</a></li>
+						<li><a href="#">신용대출 추천해줘</a></li>
+						<li><a href="#">담보 없는데 대출받고 싶어</a></li>
+						<li><a href="#">직장인인데 대출 추천해줘</a></li>
+						<li><a href="#">공무원인데 대출 추천해줘</a></li>
+						<li><a href="#">전문직에 맞는 대출 추천해줘</a></li>
+						<li><a href="#">자동차 대출 추천해줘</a></li>
+						<li><a href="#">자동차 구입하고 싶은데 돈이 필요해</a></li>
+						<li><a href="#">주택담보대출 추천해줘</a></li>
+						<li><a href="#">집사려고 하는데 대출 추천해줘</a></li>
+						<li><a href="#">예금담보대출 추천해줘</a></li>
+						<li><a href="#">예금이 있는데 담보대출 추천해줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont14">
+					<ul>
+						<li><a href="#">해외송금 추천해줘</a></li>
+						<li><a href="#">외국송금 가능해?</a></li>
+						<li><a href="#">수수료 저렴한 해외송금 알려줘</a></li>
+						<li><a href="#">해외로 송금할때 수수료 얼마나와?</a></li>
+						<li><a href="#">해외로 돈보내는 방법</a></li>
+						<li><a href="#">해외송금 방법</a></li>
+						<li><a href="#">외국으로 송금방법 추천</a></li>
+						<li><a href="#">해외송금은 어떻게 해?</a></li>
+						<li><a href="#">해외로도 돈 보낼 수 있어?</a></li>
+						<li><a href="#">외국으로 송금하고 싶어</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont15">
+					<ul>
+						<li><a href="#">예금 이자 계산해줘</a></li>
+						<li><a href="#">목돈에 대한 이자 알고싶어</a></li>
+						<li><a href="#">예금 계산기 없어?</a></li>
+						<li><a href="#">예금 이자 계산해줘</a></li>
+						<li><a href="#">목돈 1년 후 얼마 될까?</a></li>
+						<li><a href="#">예금 이자 계산하고 싶어</a></li>
+						<li><a href="#">목돈 이자 계산하고 싶어</a></li>
+						<li><a href="#">목돈 불입하면 나중에 얼마 될까?</a></li>
+						<li><a href="#">예금 금리에 따른 이자금액 알고 싶어.</a></li>
+						<li><a href="#">나 OO원을 OO동안 갖고 있으면 얼마나 벌 수 있을까?</a></li>
+						<li><a href="#">적금 이자 계산해줘</a></li>
+						<li><a href="#">매월 저출하면 1년 뒤 얼마나 될까?</a></li>
+						<li><a href="#">목돈 만들려는데 원금 이자 얼마나 될까?</a></li>
+						<li><a href="#">적금 1년 뒤 얼마나 되려나</a></li>
+						<li><a href="#">적금 계산기 없어?</a></li>
+						<li><a href="#">적금 이자 계산하고 싶어</a></li>
+						<li><a href="#">목돈 모으려는데 1년 뒤 얼마나 될까?</a></li>
+						<li><a href="#">적금 계산기</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont16">
+					<ul>
+						<li><a href="#">돈 빌리려는데 매월 얼마를 내야할까?</a></li>
+						<li><a href="#">대출받으려는데 매월 얼마 내야할까?</a></li>
+						<li><a href="#">대출 계산해줘</a></li>
+						<li><a href="#">대출 계산기</a></li>
+						<li><a href="#">대출 매월 이자금액 계산하고 싶어</a></li>
+						<li><a href="#">대출 이자금액 계산하고 싶어</a></li>
+						<li><a href="#">대출 이자 얼마나 될까?</a></li>
+						<li><a href="#">돈 필요한데 이자 얼마나 될까?</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont17">
+					<ul>
+						<li><a href="#">스케줄 등록해줘</a></li>
+						<li><a href="#">엄마생일 스케줄 등록해줘</a></li>
+						<li><a href="#">엄마생일 스케줄 추가해줘</a></li>
+						<li><a href="#">엄마생일 12월 31일 스케줄 추가해줘</a></li>
+						<li><a href="#">엄마생일 일정 등록해줘</a></li>
+						<li><a href="#">스케줄 변경해줘</a></li>
+						<li><a href="#">엄마생일 스케줄 변경해줘</a></li>
+						<li><a href="#">엄마생일 스케줄 바꿔줘</a></li>
+						<li><a href="#">엄마생일 12월 31일 스케줄 바꿔줘</a></li>
+						<li><a href="#">엄마생일 일정 변경해줘</a></li>
+						<li><a href="#">스케줄 삭제해줘</a></li>
+						<li><a href="#">엄마생일 스케줄 삭제해줘</a></li>
+						<li><a href="#">엄마생일 스케줄 지워줘</a></li>
+						<li><a href="#">엄마생일 12월 31일 스케줄 지워줘</a></li>
+						<li><a href="#">엄마생일 일정 삭제해줘</a></li>
+						<li><a href="#">스케줄 조회해줘</a></li>
+						<li><a href="#">스케줄 알려줘</a></li>
+						<li><a href="#">12월 31일 스케줄 알려줘</a></li>
+						<li><a href="#">스케줄이 궁금해</a></li>
+						<li><a href="#">12원 31일 스케줄 뭐지?</a></li>
+						<li><a href="#">12원 31일 스케줄 어떻게 되지?</a></li>
+						<li><a href="#">이번주 스케줄 알려줘</a></li>
+						<li><a href="#">가까운 만기 일정 알려줘</a></li>
+						<li><a href="#">가까운 자동이체 일정 알려줘</a></li>
+						<li><a href="#">최근 일정 알려줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont18">
+					<ul>
+						<li><a href="#">가까운 지점 알려줘</a></li>
+						<li><a href="#">여기서 가까운 지점이 어디야?</a></li>
+						<li><a href="#">내 주변에 있는 지점 보여줘</a></li>
+						<li><a href="#">근처에 있는 지점(하나은행) 알려줘</a></li>
+						<li><a href="#">서울역 부근에 있는 지점 알려줘</a></li>
+						<li><a href="#">서울역 근처 지점 보여줘</a></li>
+						<li><a href="#">서울역에서 가까운 지점이 어디야?</a></li>
+						<li><a href="#">서울역 주변 지점 보여줘</a></li>
+					</ul>
+				</div>
+				<div class="tabCont" id="tabCont19">
+					<ul>
+						<li><a href="#">내 자산보여줄래?</a></li>
+						<li><a href="#">자산현황이 어떻게 되?</a></li>
+						<li><a href="#">자산변동 체크해줘</a></li>
+						<li><a href="#">금융형황 알려줘</a></li>
+						<li><a href="#">나의 자산현황 알려줘</a></li>
+						<li><a href="#">나의 자산변동 알려줘</a></li>
+						<li><a href="#">나의 금융현황 알려줘</a></li>
+						<li><a href="#">자산현황 보여줘</a></li>
+						<li><a href="#">금융현황 체크해줘</a></li>
+						<li><a href="#">자산변동 조회해줘</a></li>
+					</ul>
+				</div>
+				<a href="#" class="speadBtn">펼침/축소</a>
+			</div>
+			<!--// 탭 메뉴 레이어 -->
+			
+		</section>
+		<!-- 키보드 관련 영역 [E] -->
+	</div>
+	<!-- layer popup [S] 공통사항 : 활성화시 'open(class명)' 이 붙습니다.  -->
+	<div class="lyPopup dimPop" id="layerPopMIC"><!-- dim popup style : 'layerPopup(공통class명)'에 'dimPop(class명)'을 추가하면 됩니다. -->
+		<div class="layerCont"><!-- layerCont(공통class명) -->
+			레이어 팝업 내용 (마이크)
+			<a href="#" class="lyClose">닫기</a>
+		</div>
+	</div>
+	<div class="lyPopup" id="layerPopCam"><!-- basic popup style : 'layerPopup(공통class명)'만. -->
+		<div class="layerCont layerCarmera">
+			레이어 팝업 내용 (카메라)
+			<a href="#" class="lyClose">닫기</a>
+		</div>
+	</div>
+	<div class="dim"></div>
+	<!-- layer popup [E] -->
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function(){
+			underAreaEvent(); // 키보드영역 관련 이벤트
+			layerPopEvent(); // 레이어 팝업 관련 이벤트
+		});
+	</script>
+</body>
+</html>
+
